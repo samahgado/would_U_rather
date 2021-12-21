@@ -11,34 +11,36 @@ import { handleInitialData } from './action/shared';
 import Nav from './component/nav';
 import Login from './component/login';
 import authedUser from './reducers/autheduser';
-import { Redirect } from 'react-router-dom';
+import { resetAuthedUser } from './action/authedUser';
 
 
 class App extends Component {
-	componentDidMount() {
-	  this.props.dispatch(handleInitialData())
-  }
-
+	componentDidMount(){
+		this.props.dispatch(handleInitialData())
+	}
   render() {
-	const { user, authedUser } = this.props
+	const { authedUser } = this.props
 	  return (
 		  <div>
 			<Nav/>  
 		  
-		 { authedUser && <Fragment>
+		 {authedUser && 
+		 
+			 <Fragment>
 
 		  
 		  <Switch>
 			  
-			  <Route path='/home' component={Home}/>
-			  
-			  <Route path='/add' component={NewQuestion}/>
+			  <Route path='/home'  component={Home}/>
 			  <Route path='/questions/:id' component={QuestionDetail} />
+			  <Route path='/add' component={NewQuestion}/>
+			  
 			   <Route path='/leaderboard' component={Leaderboard}/>
 		  </Switch>
 		  </Fragment> 
-		  }: 
-		  <Route path='/' exact component={Login}/>
+		  }:<Route path='/' exact component={Login}/>
+		 
+		  <Route path='/notFound' component={NotFound}/>
 		  
 		  </div>
 		  
@@ -50,7 +52,7 @@ function mapStateToProps( { authedUser, users}, props) {
     return {
         authedUser,
         users,
-        user: users[authedUser]
+        
     }
 
 }

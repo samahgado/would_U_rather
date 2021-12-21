@@ -4,6 +4,8 @@ import { Tab ,Tabs} from 'react-bootstrap';
 
 import { handleInitialData } from './../action/shared';
 import Question from './question';
+
+
 class Home extends React.Component {
   componentDidMount () {
     this.props.dispatch(handleInitialData())
@@ -11,7 +13,7 @@ class Home extends React.Component {
     render() { 
       const { answeredQuesions, unAnsweredQuestions} = this.props
       
-        return <div className='container'>
+        return <div><div className='container'>
             
             <Tabs defaultActiveKey="unanswered" id="uncontrolled-tab-example" className="mb-3">
   <Tab eventKey="unanswered" title="UnAnswered"   >
@@ -35,7 +37,8 @@ class Home extends React.Component {
   </Tab>
   
 </Tabs>
-        </div>;
+        </div>
+        </div>
     }
 }
  
@@ -56,7 +59,7 @@ function mapStateToProps ({ questions, authedUser, users}) {
   return {
       answeredQuesions,
       unAnsweredQuestions,
-      
+      authedUser
   }
 }
 export default connect(mapStateToProps) (Home);

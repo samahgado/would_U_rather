@@ -2,15 +2,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Card } from 'react-bootstrap'
+import authedUser from './../reducers/autheduser';
 
 class Leaderboard extends Component {
     render() {
-        const { users,leaderInfo} = this.props
-       // const sortedUsers = users.sort( (a, b) => b.totalScore - a.totalScore)
+        const { users,leaderInfo,authedUser} = this.props
+    
 
         return (
             <div className=' d-flex justify-content-center'>
-                <ul>
+                <ol className="text-danger" >
                     {leaderInfo.map((user) => (
                 <li key={user.uid}>
 
@@ -43,7 +44,7 @@ class Leaderboard extends Component {
 <br/>
 
 
-</ul>
+</ol>
 
    
 
@@ -65,7 +66,7 @@ class Leaderboard extends Component {
     }
 }
 
-function mapStateToProps( { users }) {
+function mapStateToProps( { users ,authedUser}) {
     const leaderInfo = Object.keys(users).map(( uid) =>{
     return{
         uid,
@@ -74,10 +75,11 @@ function mapStateToProps( { users }) {
         
     }
 }
-    )
+    ).sort((a, b) => (b.createdQuestions + b.answeredQuestions) - (a.createdQuestions + a.answeredQuestions))
     return{
         users,
         leaderInfo,
+        authedUser
     
     }
 

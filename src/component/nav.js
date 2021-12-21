@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { NavLink, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Navbar } from 'react-bootstrap'
+
 import { setAuthedUser } from '../action/authedUser'
 import { withRouter } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+
 import { Button } from 'react-bootstrap'
 import { Image } from 'react-bootstrap'
 

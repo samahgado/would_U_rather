@@ -7,11 +7,8 @@ class Question extends Component {
     render() {
         const {question ,author} = this.props
 
-     if    (question === null ) {
-            return <h2>No More Question</h2>
-        }
-
-        const { optionOne, optionTwo } = question
+     
+       
         const { id } = this.props
 
         return (
